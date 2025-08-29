@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@plugin "@tailwindcss/typography";
+@import "tailwindcss";
+
+@theme {
+    --font-roboto: "Roboto Condensed", sans-serif;
+
+    --text-paragraph: 16px;
+    --text-paragraph--line-height: 24px;
+    --text-paragraph--letter-spacing: 0;
+
+    --text-h6: 16px;
+    --text-h6--font-weight: bold;
+    --text-h6--line-height: 150%;
+    --text-h6--letter-spacing: 0;
+
+    --text-h5: 24px;
+    --text-h5--font-weight: bold;
+    --text-h5--letter-spacing: -1%;
+
+    --text-h4: 32px;
+    --text-h4--font-weight: bold;
+    --text-h4--line-height: 44px;
+    --text-h4--letter-spacing: -1%;
+
+    --text-h3: 40px;
+    --text-h3--font-weight: bold;
+    --text-h3--line-height: 56px;
+    --text-h3--letter-spacing: -1%;
+
+    --text-h2: 48px;
+    --text-h2--font-weight: bold;
+    --text-h2--line-height: 64px;
+    --text-h2--letter-spacing: -1%;
+
+    --text-h1: 64px;
+    --text-h1--font-weight: bold;
+    --text-h1--line-height: 82px;
+    --text-h1--letter-spacing: -1%;
+
+    --text-label-1: 24px;
+    --text-label-1--line-height: 32px;
+    --text-label-2: 16px;
+    --text-label-2--font-weight: 370;
+    --text-label-3: 18px;
+    --text-cap-1: 16px;
+    --text-cap-2: 14px;
+    --text-cap-3: 12px;
+    --text-cap-3--letter-spacing: 0%;
+
+    --color-primary: #FFD2A4;
+    --color-primary-hover: #F2C79B;
+    --color-light-orange: #FFF5EB;
+    --color-grey: #F5F2F0;
+}
+
+body {
+    font-family: "Roboto Condensed", sans-serif;
+    @apply bg-grey;
+}
+
+.editor-styles-wrapper {
+  @apply prose max-w-7xl mx-auto;
+}
+
+.editor-styles-wrapper .block-editor-wrapper {
+    max-width: 768px;
+    width: 100%;
+    margin: 0 auto;
+}
