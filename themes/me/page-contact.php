@@ -4,13 +4,24 @@
 */
 
 $to = 'markluigibatoks@gmail.com';
-    $subject = "Thank you for contacting us!";
+$subject = "Thank you for contacting us!";
+$body = '<p>This is a test email</p>';
+$headers = [
+    'Content-Type: text/html; charset=UTF-8',
+    'From: Mark <hello@markluigibatoctoy.com>'
+];
 
-    $body = '<p>This is a test email</p>';
+error_log('send_contact_form_email fired');
+error_log('To: ' . $to);
+error_log('Body: ' . $body);
 
-    $headers = ['Content-Type: text/html; charset=UTF-8'];
+if ( wp_mail($to, $subject, $body, $headers) ) {
+    echo 'Email sent successfully!';
+} else {
+    echo 'Email failed!';
+    error_log('DEBUG: wp_mail failed for ' . $to);
+}
 
-    wp_mail($to, $subject, $body, $headers);
 
     
   get_header();
