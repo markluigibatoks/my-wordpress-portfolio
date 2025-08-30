@@ -2,6 +2,17 @@
 /*  Template Name: Contact me
     Template Post Type: page
 */
+
+$to = 'markluigibatoks@gmail.com';
+    $subject = "Thank you for contacting us!";
+
+    $body = '<p>This is a test email</p>';
+
+    $headers = ['Content-Type: text/html; charset=UTF-8'];
+
+    wp_mail($to, $subject, $body, $headers);
+
+    
   get_header();
 
   get_template_part(
