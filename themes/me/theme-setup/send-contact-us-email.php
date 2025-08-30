@@ -5,13 +5,10 @@ function send_contact_form_email($post_id) {
     $email = get_field('email', $post_id);
     $message = get_field('message', $post_id);
 
-    $to = $email;
+    $to = 'markluigibatoks@gmail.com';
     $subject = "Thank you for contacting us!";
 
-    // Load template
-    ob_start();
-    include get_stylesheet_directory() . '/email-templates/contact-us-confirmation.php';
-    $body = ob_get_clean();
+    $body = '<p>This is a test email</p>';
 
     $headers = ['Content-Type: text/html; charset=UTF-8'];
 
