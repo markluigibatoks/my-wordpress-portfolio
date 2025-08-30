@@ -35,6 +35,8 @@ function createContactUs($data) {
       )
     ));
 
+    send_contact_form_email($name, $email);
+
     wp_send_json_success([
       'message' => 'Message submitted successfully',
     ]);
@@ -42,3 +44,21 @@ function createContactUs($data) {
     wp_send_json_error(['message' => 'Failed to send a message']);
   }
 }
+
+function send_contact_form_email($name, $email) {
+
+    $name = get_field('name', $name);
+    $email = get_field('email', $email);
+
+    $to = $email;
+    $subject = "Thank you for contacting us!";
+
+    $body = '<p>This is a test email</p>';
+
+    $headers = [
+        'Content-Type: text/html; charset=UTF-8',
+        'From: Mark <hello@markluigibatoctoy.com>'
+    ];
+
+    wp_mail($to, $subject, $body, $headers);
+  }
