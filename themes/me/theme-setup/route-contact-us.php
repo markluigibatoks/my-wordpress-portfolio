@@ -35,29 +35,32 @@ function createContactUs($data) {
       )
     ));
 
-    send_contact_form_email($name, $email);
+    // Schedule async email
+    if (! wp_next_scheduled('send_contact_form_email_event', [$name, $email, $message])) { wp_schedule_single_event(time() + 1, 'send_contact_form_email_event', [$name, $email, $message]); }
+
 
     wp_send_json_success([
       'message' => 'Message submitted successfully',
     ]);
+
   } catch(e) {
     wp_send_json_error(['message' => 'Failed to send a message']);
   }
 }
 
-function send_contact_form_email($name, $email) {
-
-    $name = get_field('name', $name);
-    $email = get_field('email', $email);
+function send_contact_form_email($name, $email, $message) {
 
     $to = $email;
     $subject = "Thank you for contacting us!";
 
-    $body = '<p>This is a test email</p>';
+    // Load template
+    ob_start(); include get_stylesheet_directory() . '/email-templates/contact-us-confirmation.php';
+    $body = ob_get_clean();
 
     $headers = [
         'Content-Type: text/html; charset=UTF-8',
-        'From: Mark <hello@markluigibatoctoy.com>'
+        'From: Mark <hello@markluigibatoctoy.com>',
+        'Reply-To: Mark <hello@markluigibatoctoy.com>'
     ];
 
     wp_mail($to, $subject, $body, $headers);
