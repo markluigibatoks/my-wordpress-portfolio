@@ -18,7 +18,7 @@
                   <textarea name="message" placeholder="Message" rows="4" class="w-full px-8 py-3 border border-lighter-black bg-light-black"></textarea>
                 </label>
               </div>
-              <button type="submit" href="#" class="mt-10 cursor-pointer block button-primary mx-auto lg:mx-0">Send Message</button>
+              <button type="submit" class="mt-10 cursor-pointer block button-primary mx-auto lg:mx-0">Send Message</button>
             </form>
         </div>
     </div>

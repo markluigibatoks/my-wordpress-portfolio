@@ -3,6 +3,7 @@ import SweetAlert from "./SweetAlert";
 class FormContactUs {
     constructor(formSelector) {
         this.form = document.querySelector(formSelector);
+        this.submitButton = this.form.querySelector('button[type="submit"]');
 
         this.events();
         this.swal = new SweetAlert()
@@ -11,6 +12,7 @@ class FormContactUs {
     events() {
         this.form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            this.submitButton.disabled = true;
 
             const formData = new FormData(this.form);
 
@@ -35,6 +37,7 @@ class FormContactUs {
                     text: 'Thank you for sending me a message! I will get back to you shortly.'
                 })
 
+                this.submitButton.disabled = false;
                 this.form.reset()
             } catch (error) {
                 this.swal.error({
