@@ -38,6 +38,8 @@ function createContactUs($data) {
     // Schedule async email
     if (! wp_next_scheduled('send_contact_form_email_event', [$name, $email, $message])) { wp_schedule_single_event(time() + 1, 'send_contact_form_email_event', [$name, $email, $message]); }
 
+    //send_contact_form_email($name, $email, $message);
+
 
     wp_send_json_success([
       'message' => 'Message submitted successfully',

@@ -50,3 +50,25 @@ add_action('enqueue_block_editor_assets', function () {
   $post_type = get_post_type();
   wp_add_inline_script('editor-custom-logic', 'window.currentPostType = "' . esc_js($post_type) . '";', 'before');
 });
+
+
+// This hook handles the async email scheduled by your REST API route
+add_action('send_contact_form_email_event', 'send_contact_form_email_async', 10, 3);
+
+function send_contact_form_email_async($name, $email, $message) {
+    $to = $email;
+    $subject = "Thank you for contacting us!";
+
+    // Load your email template
+    ob_start(); 
+    include get_stylesheet_directory() . '/email-templates/contact-us-confirmation.php';
+    $body = ob_get_clean();
+
+    $headers = [
+        'Content-Type: text/html; charset=UTF-8',
+        'From: Mark <hello@markluigibatoctoy.com>',
+        'Reply-To: Mark <hello@markluigibatoctoy.com>'
+    ];
+
+    wp_mail($to, $subject, $body, $headers);
+}
