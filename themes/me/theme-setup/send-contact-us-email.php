@@ -13,8 +13,20 @@ function send_contact_form_email($post_id) {
 
     $body = '<p>This is a test email</p>';
 
-    $headers = ['Content-Type: text/html; charset=UTF-8'];
+    error_log('send_contact_form_email fired');
+    error_log('To: ' . $to);
+    error_log('Body: ' . $body);
 
-    wp_mail($to, $subject, $body, $headers);
+    $headers = [
+        'Content-Type: text/html; charset=UTF-8',
+        'From: Mark <hello@markluigibatoctoy.com>'
+    ];
+
+    if ( wp_mail($to, $subject, $body, $headers) ) {
+        echo 'Email sent successfully!';
+    } else {
+        echo 'Email failed!';
+        error_log('DEBUG: wp_mail failed for ' . $to);
+    }
 }
 ?>
